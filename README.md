@@ -38,7 +38,7 @@ This platform helps SOC teams build high-quality detection rules by enforcing a 
 - Python 3.11+
 - Docker & Docker Compose
 - Git
-## ⚙️nstallation
+## Installation
 
 1. **Clone the repository**
 ```bash
