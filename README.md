@@ -24,7 +24,7 @@ This platform helps SOC teams build high-quality detection rules by enforcing a 
 - **Validation Testing**: Automated test case generation
 - **API-First Design**: RESTful API with complete documentation
 
-## echnology Stack
+## Technology Stack
 
 - **Backend**: FastAPI (Python 3.11)
 - **Database**: PostgreSQL 15
