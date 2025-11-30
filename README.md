@@ -405,4 +405,4 @@ For questions or collaboration opportunities, please open an issue on GitHub.
 
 **Built by a Detection Engineer, for Detection Engineers**
 
-*Last Updated: November 29, 2024*
+*Last Updated: November 29, 2025
