@@ -19,6 +19,7 @@ from app.core.security import (
 )
 from app.api.integrations import router as integrations_router
 from app.api.playbooks import router as playbooks_router
+from app.api.alerts import router as alerts_router
 
 load_dotenv()
 
@@ -44,6 +45,8 @@ app.add_middleware(
 
 app.include_router(integrations_router)
 app.include_router(playbooks_router)
+app.include_router(alerts_router)
+app.include_router(alerts_router)
 
 @app.get("/health")
 def health_check():
