@@ -18,6 +18,7 @@ from app.core.security import (
     verify_password, get_password_hash, create_access_token, get_current_user
 )
 from app.api.integrations import router as integrations_router
+from app.api.playbooks import router as playbooks_router
 
 load_dotenv()
 
@@ -42,6 +43,7 @@ app.add_middleware(
 )
 
 app.include_router(integrations_router)
+app.include_router(playbooks_router)
 
 @app.get("/health")
 def health_check():
