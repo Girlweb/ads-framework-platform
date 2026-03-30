@@ -1,0 +1,18 @@
+# Async Task Queue
+celery==5.3.4
+redis==5.0.1
+
+# ML & Analytics (Updated for Python 3.12)
+scikit-learn==1.4.0
+pandas==2.2.0
+numpy==1.26.3
+
+# Security Tool Integrations
+aiohttp==3.9.1
+
+# Threat Intelligence
+pymisp==2.4.177
+
+# Workflow Processing
+jsonschema==4.20.0
+pyyaml==6.0.1
