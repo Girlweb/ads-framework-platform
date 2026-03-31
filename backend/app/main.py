@@ -21,6 +21,7 @@ from app.api.integrations import router as integrations_router
 from app.api.playbooks import router as playbooks_router
 from app.api.alerts import router as alerts_router
 from app.api.threat_intel import router as threat_intel_router
+from app.api.ml_scoring import router as ml_router
 
 load_dotenv()
 
@@ -48,8 +49,10 @@ app.include_router(integrations_router)
 app.include_router(playbooks_router)
 app.include_router(alerts_router)
 app.include_router(threat_intel_router)
+app.include_router(ml_router)
 app.include_router(alerts_router)
 app.include_router(threat_intel_router)
+app.include_router(ml_router)
 
 @app.get("/health")
 def health_check():
