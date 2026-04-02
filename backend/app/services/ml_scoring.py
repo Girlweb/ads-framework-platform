@@ -1,5 +1,6 @@
 from app.db.database import SessionLocal
 from app.models.integrations import Alert
+from datetime import datetime
 import numpy as np
 
 class MLAlertScorer:
@@ -121,9 +122,34 @@ class MLAlertScorer:
                 result = await self.score_alert(str(alert.id))
                 results.append(result)
             results.sort(key=lambda x: x.get("ml_priority_score", 0), reverse=True)
+            return {"total_scored": len(results), "prioritized_alerts": results}
+        finally:
+            db.close()
+
+    async def score_alert_with_model(self, alert_id: str) -> dict:
+        from app.services.ml_model import alert_ml_model
+        db = SessionLocal()
+        try:
+            alert = db.query(Alert).filter(Alert.id == alert_id).first()
+            if not alert:
+                return {"error": "Alert not found"}
+            features = self.extract_features(alert)
+            if alert.created_at:
+                hours_old = (datetime.utcnow() - alert.created_at).total_seconds() / 3600
+            else:
+                hours_old = 1.0
+            features["hours_old"] = hours_old
+            ml_prediction = alert_ml_model.predict_priority(features)
+            rule_score = self.calculate_priority_score(features)
             return {
-                "total_scored": len(results),
-                "prioritized_alerts": results
+                "alert_id": alert_id,
+                "title": alert.title,
+                "severity": alert.severity,
+                "rule_based_score": rule_score,
+                "ml_prediction": ml_prediction,
+                "final_priority": ml_prediction["priority_label"],
+                "confidence": ml_prediction["confidence"],
+                "analyst_guidance": self.get_analyst_guidance(features, rule_score)
             }
         finally:
             db.close()
