@@ -11,7 +11,7 @@ numpy==1.26.3
 aiohttp==3.9.1
 
 # Threat Intelligence
-pymisp==2.4.177
+pymisp==2.4.176
 
 # Workflow Processing
 jsonschema==4.20.0
